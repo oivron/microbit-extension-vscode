@@ -1,0 +1,27 @@
+// Place your settings in this file to overwrite default and user settings.
+{
+    "files.exclude": {
+        "out": false // set this to true to hide the "out" folder with the compiled JS files
+    },
+    "search.exclude": {
+        "out": true // set this to false to include "out" folder in search results
+    },
+    // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
+    "typescript.tsc.autoDetect": "off",
+    "git.enabled": true,
+    "git.autofetch": true,
+    "git.ignoreMissingGitWarning": true,
+    "editor.minimap.enabled": false,
+    "workbench.editor.enablePreview": false,
+    "extensions.ignoreRecommendations": true,
+    "extensions.showRecommendationsOnlyOnDemand": true,
+    "workbench.startupEditor": "none",
+    "python.linting.pylintArgs": [
+        "--disable=W0614",
+        "--disable=C0111",
+        "--disable=W0401",
+        "--disable=C0411",
+        "--disable=C0413",
+        "--disable=E0401"
+    ]
+}
