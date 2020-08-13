@@ -31,6 +31,13 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 
+	function installBitbotModule() {
+		term.show();
+		var cmd = "pip install bitbotxl";
+		term.sendText(cmd);
+	}
+
+
 	function getRepo() {
 		term.show();
 		var cmd = "(new-object System.Net.WebClient).DownloadFile('https://github.com/PhonicCanine/microbit/archive/master.zip', 'master.zip')";
@@ -70,9 +77,9 @@ export function activate(context: vscode.ExtensionContext) {
 	function prepareMicrobit() {
 		sysPathToFile();
 		setTimeout(function () { runPythonFile(); }, 1000);
+		installBitbotModule();
 		getRepo();
 		installSettings();
-		setTimeout(function () { vscode.window.showInformationMessage("micro:bit Prepare completed!"); }, 4000); //Forsinkelse så meldingen kommer til slutt.
 	}
 	let prepareMicrobitCommand = vscode.commands.registerCommand('extension.prepareMicrobit', function () {
 		prepareMicrobit();

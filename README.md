@@ -6,6 +6,7 @@ This extension:
 * Determines and saves the location of the Python site-packages folder.
 * Downloads and installs repo: https://github.com/PhonicCanine/microbit.
 * Downloads and installs repo: https://github.com/oivron/mbitutils.
+* Downloads and installs repo: https://github.com/oivron/bitbotxl.
 * Modifies user settings.
 * Flashes microbit with uflash and microfs.
 
@@ -22,14 +23,11 @@ This extension:
 
 ## Requirements
 
-Requires: https://github.com/oivron/bitbotxl
-
 ## Known Issues
 
 ## Release Notes
 
-### 0.0.2
+### 0.0.3
 
-* Downloads and installs the following repo: https://github.com/oivron/mbitutils.
-* Added microbit terminal.
-* Added more user settings modifications.
+* Downloads and installs the following repo: https://github.com/oivron/bitbotxl.
+* Removed information message "micro:bit Prepare completed!". It did not show up at the correct time.
