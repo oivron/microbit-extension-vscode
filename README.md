@@ -1,5 +1,7 @@
 # microbit README
 
+The purpose of this extension is to create an easy to use environment for blind students to code the BBC micro:bit with Python. Block editors are hard to use and many text editors will not work well with assistive tools like screen readers.
+
 ## Features
 
 This extension:

@@ -18,10 +18,10 @@
 		"vscode": "^1.43.0"
 	},
 	"keywords": [
-		"python"
+		"microbit micropython python"
 	],
 	"categories": [
-		"Other"
+		"Programming Languages"
 	],
 	"activationEvents": [
 		"*"
