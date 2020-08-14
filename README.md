@@ -1,6 +1,6 @@
 # microbit README
 
-The purpose of this extension is to create an easy to use environment for blind students to code the BBC micro:bit with Python. Block editors are hard to use and many text editors will not work well with assistive tools like screen readers.
+The purpose of this extension is to create an easy to use environment for blind students who code the BBC micro:bit with Python. Block editors are hard to use and many text editors will not work well with assistive tools like screen readers. Visual Studio Code has great support for screen readers. We recommend NVDA.
 
 ## Features
 
@@ -29,7 +29,7 @@ This extension:
 
 ## Release Notes
 
-### 0.0.3
+## [0.0.4] - 2020-08-14
 
-* Downloads and installs the following repo: https://github.com/oivron/bitbotxl.
-* Removed information message "micro:bit Prepare completed!". It did not show up at the correct time.
+### Added
+* Minor updates and fixes.
