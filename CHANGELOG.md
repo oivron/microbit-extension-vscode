@@ -31,3 +31,22 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 * Minor updates and fixes.
+
+## [0.1.1] - 2021-02-16
+
+### Added
+* Installs additional third-party Python modules to a separate directory. This is because many schools does not allow installing to the site-packages directory.
+* Sets Windows environment variables.
+* Removed deprecated user settings and added a few more.
+
+### Removed
+* No longer searches for the location of the Python site-packages folder.
+
+## [1.0.3] - 2021-09-03
+
+### Added
+* Code completely rewritten.
+* Support for micro:bit V2.
+* Improved micro:bit stub files.
+* Reads error messages from the micro:bit.
+* Experimental: If user not allowed to install third-party Python modules in the normal way, extension tries to install to $env:userprofile instead.

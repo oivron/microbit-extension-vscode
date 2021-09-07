@@ -1,13 +1,13 @@
 {
 	"name": "microbit",
 	"displayName": "micro:bit",
-	"description": "Prepares Visual Studio Code for the 4tronix Bit:bot and the BBC micro:bit",
-	"version": "0.0.4",
+	"description": "Prepares Visual Studio Code for the BBC micro:bit and the 4tronix Bit:bot XL.",
+	"version": "1.0.3",
 	"publisher": "Statped",
 	"author": {
 		"name": "Øivind Rønning",
 		"email": "oiron@statped.no",
-		"url": "https://www.statped.no/Spraksider/In-English/"
+		"url": "https://www.statped.no/english/"
 	},
 	"repository": {
 		"type": "Git",
@@ -15,10 +15,12 @@
 	},
 	"icon": "icon.png",
 	"engines": {
-		"vscode": "^1.43.0"
+		"vscode": "^1.59.0"
 	},
 	"keywords": [
-		"microbit micropython python"
+		"microbit",
+		"micropython",
+		"python"
 	],
 	"categories": [
 		"Programming Languages"
@@ -28,20 +30,58 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"commands": [
+		"configuration": [
 			{
-				"command": "extension.prepareMicrobit",
-				"title": "micro:bit Prepare"
+				"title": "Python",
+				"properties": {
+					"python.thirdPartyModulesDirectory": {
+						"type": "string",
+						"default": null,
+						"description": "Specifies Python's third-party modules directory."
+					}
+				}
 			},
 			{
+				"title": "microbit",
+				"properties": {
+					"microbit.comPort": {
+						"type": "string",
+						"default": null,
+						"description": "Specifies the selected micro:bit COM port."
+					}
+				}
+			}
+		],
+		"commands": [
+			{
 				"command": "extension.flashMicrobit",
-				"title": "micro:bit Flash"
+				"title": "micro:bit: Flash"
+			},
+			{
+				"command": "extension.prepareForMicrobit",
+				"title": "micro:bit: Prepare"
+			},
+			{
+				"command": "extension.selectComPort",
+				"title": "micro:bit: Set COM port"
+			},
+			{
+				"command": "extension.readRepl",
+				"title": "micro:bit: Read micro:bit (REPL)"
 			}
 		],
 		"keybindings": [
 			{
 				"command": "extension.flashMicrobit",
 				"key": "ctrl+f5"
+			},
+			{
+				"command": "extension.readRepl",
+				"key": "ctrl+alt+f5"
+			},
+			{
+				"command": "notifications.showList",
+				"key": "ctrl+alt+n"
 			}
 		]
 	},
@@ -54,16 +94,23 @@
 		"test": "node ./out/test/runTest.js"
 	},
 	"devDependencies": {
-		"@types/glob": "^7.1.1",
-		"@types/mocha": "^7.0.1",
-		"@types/node": "^12.11.7",
-		"@types/vscode": "^1.43.0",
+		"@types/glob": "^7.1.4",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^12.20.19",
+		"@types/vscode": "^1.59.0",
+		"@typescript-eslint/eslint-plugin": "^2.34.0",
+		"@typescript-eslint/parser": "^2.34.0",
 		"eslint": "^6.8.0",
-		"@typescript-eslint/parser": "^2.18.0",
-		"@typescript-eslint/eslint-plugin": "^2.18.0",
-		"glob": "^7.1.6",
-		"mocha": "^7.0.1",
-		"typescript": "^3.7.5",
-		"vscode-test": "^1.3.0"
+		"glob": "^7.1.7",
+		"mocha": "^7.2.0",
+		"typescript": "^3.9.10",
+		"vscode-test": "^1.6.1"
+	},
+	"dependencies": {
+		"get-github-code": "^1.0.4",
+		"git-clone": "^0.1.0",
+		"shelljs": "^0.8.4",
+		"rimraf": "^3.0.2",
+		"download-git-repo": "^3.0.2"
 	}
 }

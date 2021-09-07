@@ -1,35 +1,55 @@
 # microbit README
 
-The purpose of this extension is to create an easy to use environment for blind students who code the BBC micro:bit with Python. Block editors are hard to use and many text editors will not work well with assistive tools like screen readers. Visual Studio Code has great support for screen readers. We recommend NVDA.
+A Visual Studio Code extension for students who code the BBC micro:bit or the 4tronix Bit:Bot XL with Python. Initially intended for visually impaired children, but can be used by anyone who prefer to code the micro:bit with text rather than block.
 
 ## Features
 
-This extension:
-* Determines and saves the location of the Python site-packages folder.
-* Downloads and installs repo: https://github.com/PhonicCanine/microbit.
-* Downloads and installs repo: https://github.com/oivron/mbitutils.
-* Downloads and installs repo: https://github.com/oivron/bitbotxl.
-* Modifies user settings.
-* Flashes microbit with uflash and microfs.
+* Provides type hints.
+* Supports both micro:bit V1 and V2.
+* Flashes the micro:bit with your script.
+* Reads error messages from the micro:bit (REPL).
+* Experimental: Some users are not allowed to install third-party Python modules on their computer. In that case the extension will try to install to $env:userprofile.
 
 ## How to use
 
+### Getting started
+
 1. First, create a new folder/workspace in Visual Studio Code.
-2. Add Visual Studio Code extension https://marketplace.visualstudio.com/items?itemName=ms-python.python.
+2. Make sure you have the following extension installed: https://marketplace.visualstudio.com/items?itemName=ms-python.python.
 3. Add this extension.
-4. Restart Visual Studio Code.
-5. Open Command Palette, select __micro:bit Prepare__.
-6. Reload window.
-7. Write your Python script for micro:bit or Bit:bot XL.
-8. Flash your micro:bit using Ctrl+F5 (or Command Palette __micro:bit Flash__).
+4. Open Command Palette, select __micro:bit Prepare__.
+5. Restart Visual Studio Code.
+6. Write your Python script for micro:bit or Bit:Bot XL.
+7. Flash your micro:bit using __Ctrl+F5__ (or Command Palette __micro:bit Flash__).
 
-## Requirements
+### Read error messages
 
-## Known Issues
+You can read error messages from the micro:bit.
+
+1. Open Windows Device Manager (__Win+X, Device Manager__) to find the micro:bit COM port.
+2. Open Command Palette and select __micro:bit: Set COM port__.
+3. Enter the COM port number from the Device Manager.
+4. Make sure that your script is running on the micro:bit.
+5. Open Command Palette and select __micro:bit: Read micro:bit (REPL)__ or press __Ctrl+Alt+F5__.
+6. Any error messages will be written to the terminal.
+
+## Available Commands and keyboard short cuts
+
+| Command                              | Keyboard        | Description                                              |
+| -----------                          | -----------     | -----------                                              |
+| __micro:bit: Flash__                 | __Ctrl+F5__     | Flash your micro:bit with the currently open script.     |
+| __micro:bit: Prepare__               | N/A             | Prepare VSCode for working with the micro:bit.           |
+| __micro:bit: Set COM port__          | N/A             | Set the micro:bit COM port (found in the Device Manager).|
+| __micro:bit: Read micro:bit (REPL)__ | __Ctrl+Alt+F5__ | Read error messages on the micro:bit.                    |
+| __Show notifications list__          | __Ctrl+Alt+N__  | Access the Notifications list.                           |
+
 
 ## Release Notes
 
-## [0.0.4] - 2020-08-14
+### [1.0.3] - 2021-09-03
 
-### Added
-* Minor updates and fixes.
+* Code completely rewritten.
+* Support for micro:bit V2.
+* Improved micro:bit stub files.
+* Reads error messages from the micro:bit.
+* Experimental: If user not allowed to install third-party Python modules in the normal way, extension tries to install to $env:userprofile instead.
