@@ -1,0 +1,39 @@
+env:
+  node: true
+  browser: true
+  es6: true
+  jest: true
+
+parserOptions:
+  ecmaVersion: 2018
+  sourceType:  module
+
+parser: "@typescript-eslint/parser"
+
+extends:
+  - "plugin:@typescript-eslint/recommended"
+
+rules:
+  array-bracket-spacing: warn
+  arrow-parens: [warn, as-needed]
+  arrow-spacing: warn  
+  comma-spacing: warn
+  func-call-spacing: warn
+  indent: [error, 4, { SwitchCase: 1 }]
+  key-spacing: warn
+  keyword-spacing: warn
+  no-console: [warn, { allow: [info, warn, error] }]
+  no-multi-spaces: warn
+  no-multiple-empty-lines: [error, { max: 1, maxBOF: 0 }]
+  no-unused-vars: warn
+  no-useless-escape: off
+  no-var: warn
+  no-whitespace-before-property: warn
+  prefer-arrow-callback: warn
+  rest-spread-spacing: warn
+  semi-spacing: warn
+  space-before-blocks: warn  
+  space-in-parens: warn
+  space-infix-ops: warn
+  spaced-comment: [warn, always, { block: { balanced: true } }]
+  template-curly-spacing: warn  
