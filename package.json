@@ -107,9 +107,6 @@
 		"vscode-test": "^1.6.1"
 	},
 	"dependencies": {
-		"get-github-code": "^1.0.4",
-		"git-clone": "^0.1.0",
-		"shelljs": "^0.8.4",
 		"rimraf": "^3.0.2",
 		"download-git-repo": "^3.0.2"
 	}
