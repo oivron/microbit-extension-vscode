@@ -46,10 +46,7 @@ You can read error messages from the micro:bit.
 
 ## Release Notes
 
-### [1.0.3] - 2021-09-03
+### [1.0.5] - 2022-03-08
 
-* Code completely rewritten.
-* Support for micro:bit V2.
-* Improved micro:bit stub files.
-* Reads error messages from the micro:bit.
-* Experimental: If user not allowed to install third-party Python modules in the normal way, extension tries to install to $env:userprofile instead.
+* Security updates.
+* Added LICENCE file.

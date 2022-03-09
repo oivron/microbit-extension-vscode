@@ -50,3 +50,8 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Improved micro:bit stub files.
 * Reads error messages from the micro:bit.
 * Experimental: If user not allowed to install third-party Python modules in the normal way, extension tries to install to $env:userprofile instead.
+
+## [1.0.5] - 2022-03-08
+
+* Security updates.
+* Added LICENCE file.
