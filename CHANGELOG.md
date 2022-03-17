@@ -55,3 +55,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 * Security updates.
 * Added LICENCE file.
+
+## [1.0.6] - 2022-03-16
+
+* Minor updates.

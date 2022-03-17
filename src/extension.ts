@@ -49,7 +49,7 @@ export function activate(context: vscode.ExtensionContext) {
 				let workspace = vscode.workspace.workspaceFolders[0].uri.path;
 				targetPath = (workspace).replace(/^\/|\/$/g, '');
 				targetPath = targetPath.replace(/\//g, '\\\\');
-				console.log("Workspace: " + targetPath);
+				console.log("Workspace dir: " + targetPath);
 				return targetPath;
 			}
 			else {
@@ -92,13 +92,11 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			if (typeof workspace !== 'undefined' && workspace) {
 				let targetPath = workspace + "\\\\\.microbit-stubs";
-				console.log("Target for stubs: " + targetPath);
+				console.log("Stubs dir: " + targetPath);
 				await download('oivron/microbit-stubs', targetPath, function (err) {
 					console.log(err ? 'Error' : 'Repo sucessfully downloaded!');
 				});
-				console.log("Kaller createEnvFile");
 				await createEnvFile();
-				console.log("Kaller setEnvVariable");
 				setEnvVariable();
 			}
 		} catch (error) {
@@ -125,7 +123,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	function setEnvVariable() {
 		try {
-			console.log("Start setEnvVariable");
+			console.log('Creating environment variables');
 			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Pythonpath', 'User')"
 			term.sendText(cmd);
 
@@ -140,7 +138,6 @@ export function activate(context: vscode.ExtensionContext) {
 			term.sendText(cmd);
 
 			term.sendText("cls");
-			console.log("Slutt setEnvVariable");
 		} catch (error) {
 			console.log(error);
 		}
@@ -245,13 +242,11 @@ export function activate(context: vscode.ExtensionContext) {
 					if (selection === "Install") {
 						let path = "$env:userprofile\\Python\\lib\\site-packages";
 						let target = "-t " + path;
-						console.log("Target for Python modules: " + target);
+						console.log("Python third-party dir: " + target);
 						installModules(target);
 						vscode.workspace.getConfiguration("python").update("thirdPartyModulesDirectory", path, vscode.ConfigurationTarget.Global);
 						console.log("Python third-party dir: " + path);
-						console.log("Kaller setEnvVariables");
 						setEnvVariables();
-						console.log("Kaller createPipConfig");
 						createPipConfig();
 						let extraPathsArgs: string[] = ['\.microbit-stubs/microbit/lib', '$env:userprofile\\Python\\lib\\site-packages'];
 						vscode.workspace.getConfiguration("python.autoComplete").update("extraPaths", extraPathsArgs, vscode.ConfigurationTarget.Workspace);
@@ -269,7 +264,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	async function setEnvVariables() {
 		try {
-			console.log("Start setEnvVariables");
 			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Path', 'User')"
 			term.sendText(cmd);
 			var cmd = "$userprofileValues = $env:userprofile + '\\Python\\lib\\site-packages' +';' + $env:userprofile + '\\Python\\lib\\site-packages\\bin'"
@@ -302,7 +296,7 @@ export function activate(context: vscode.ExtensionContext) {
 			term.sendText(cmd);
 
 			term.sendText("cls");
-			console.log("Slutt setEnvVariables");
+			console.log("Added Environment variables");
 		} catch (error) {
 			console.log(error);
 		}
@@ -319,7 +313,7 @@ export function activate(context: vscode.ExtensionContext) {
 				fs.mkdirSync(path);
 				fs.writeFile(path + '\\pip.ini', '[global]\ntarget=' + homedir + '\\Python\\lib\\site-packages', function (err) {
 					if (err) return console.log(err);
-					console.log('pip.ini created in ' + homedir);
+					console.log('Added pip.ini in ' + homedir);
 				});
 			}
 		} catch (error) {
@@ -330,7 +324,6 @@ export function activate(context: vscode.ExtensionContext) {
 
 	async function prepareForMicrobit() {
 		try {
-			console.log("***********************************************");
 			await findPipLocation();
 			const workspace = getWorkspace();
 			await cleanUpWorkspace(workspace);

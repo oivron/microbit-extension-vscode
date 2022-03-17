@@ -81,7 +81,7 @@ function activate(context) {
                 let workspace = vscode.workspace.workspaceFolders[0].uri.path;
                 targetPath = (workspace).replace(/^\/|\/$/g, '');
                 targetPath = targetPath.replace(/\//g, '\\\\');
-                console.log("Workspace: " + targetPath);
+                console.log("Workspace dir: " + targetPath);
                 return targetPath;
             }
             else {
@@ -123,13 +123,11 @@ function activate(context) {
             try {
                 if (typeof workspace !== 'undefined' && workspace) {
                     let targetPath = workspace + "\\\\\.microbit-stubs";
-                    console.log("Target for stubs: " + targetPath);
+                    console.log("Stubs dir: " + targetPath);
                     yield download('oivron/microbit-stubs', targetPath, function (err) {
                         console.log(err ? 'Error' : 'Repo sucessfully downloaded!');
                     });
-                    console.log("Kaller createEnvFile");
                     yield createEnvFile();
-                    console.log("Kaller setEnvVariable");
                     setEnvVariable();
                 }
             }
@@ -158,7 +156,7 @@ function activate(context) {
     }
     function setEnvVariable() {
         try {
-            console.log("Start setEnvVariable");
+            console.log('Creating environment variables');
             var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Pythonpath', 'User')";
             term.sendText(cmd);
             var cmd = "$arg = Get-Location | select -ExpandProperty Path";
@@ -170,7 +168,6 @@ function activate(context) {
             var cmd = "[Environment]::SetEnvironmentVariable('Pythonpath', $values, 'User')";
             term.sendText(cmd);
             term.sendText("cls");
-            console.log("Slutt setEnvVariable");
         }
         catch (error) {
             console.log(error);
@@ -310,13 +307,11 @@ function activate(context) {
                     if (selection === "Install") {
                         let path = "$env:userprofile\\Python\\lib\\site-packages";
                         let target = "-t " + path;
-                        console.log("Target for Python modules: " + target);
+                        console.log("Python third-party dir: " + target);
                         installModules(target);
                         vscode.workspace.getConfiguration("python").update("thirdPartyModulesDirectory", path, vscode.ConfigurationTarget.Global);
                         console.log("Python third-party dir: " + path);
-                        console.log("Kaller setEnvVariables");
                         setEnvVariables();
-                        console.log("Kaller createPipConfig");
                         createPipConfig();
                         let extraPathsArgs = ['\.microbit-stubs/microbit/lib', '$env:userprofile\\Python\\lib\\site-packages'];
                         vscode.workspace.getConfiguration("python.autoComplete").update("extraPaths", extraPathsArgs, vscode.ConfigurationTarget.Workspace);
@@ -335,7 +330,6 @@ function activate(context) {
     function setEnvVariables() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("Start setEnvVariables");
                 var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Path', 'User')";
                 term.sendText(cmd);
                 var cmd = "$userprofileValues = $env:userprofile + '\\Python\\lib\\site-packages' +';' + $env:userprofile + '\\Python\\lib\\site-packages\\bin'";
@@ -362,7 +356,7 @@ function activate(context) {
                 var cmd = "[Environment]::SetEnvironmentVariable('Pythonpath', $values, 'User')";
                 term.sendText(cmd);
                 term.sendText("cls");
-                console.log("Slutt setEnvVariables");
+                console.log("Added Environment variables");
             }
             catch (error) {
                 console.log(error);
@@ -379,7 +373,7 @@ function activate(context) {
                 fs.writeFile(path + '\\pip.ini', '[global]\ntarget=' + homedir + '\\Python\\lib\\site-packages', function (err) {
                     if (err)
                         return console.log(err);
-                    console.log('pip.ini created in ' + homedir);
+                    console.log('Added pip.ini in ' + homedir);
                 });
             }
         }
@@ -390,7 +384,6 @@ function activate(context) {
     function prepareForMicrobit() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
-                console.log("***********************************************");
                 yield findPipLocation();
                 const workspace = getWorkspace();
                 yield cleanUpWorkspace(workspace);

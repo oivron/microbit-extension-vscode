@@ -8,6 +8,7 @@ A Visual Studio Code extension for students who code the BBC micro:bit or the 4t
 * Supports both micro:bit V1 and V2.
 * Flashes the micro:bit with your script.
 * Reads error messages from the micro:bit (REPL).
+* Modifies workspace settings (see below).
 * Experimental: Some users are not allowed to install third-party Python modules on their computer. In that case the extension will try to install to $env:userprofile.
 
 ## How to use
@@ -43,10 +44,42 @@ You can read error messages from the micro:bit.
 | __micro:bit: Read micro:bit (REPL)__ | __Ctrl+Alt+F5__ | Read error messages on the micro:bit.                    |
 | __Show notifications list__          | __Ctrl+Alt+N__  | Access the Notifications list.                           |
 
+## Workspace settings
+
+This extension modifies workspace settings in the following way:
+
+```
+"python.languageServer": "Pylance",
+"python.linting.enabled": true,
+"python.linting.pylintEnabled": true,
+"python.analysis.autoSearchPaths": true,
+"python.autoComplete.extraPaths": [
+    ".microbit-stubs/microbit/lib"
+],
+"python.analysis.extraPaths": [
+    ".microbit-stubs/microbit/lib"
+],
+"files.exclude": {
+    ".microbit-stubs": true,
+    ".vscode": true,
+    ".env": true
+},
+"python.envFile": "${workspacefolder}/.env",
+"python.linting.pylintArgs": [
+    "--disable=W0614",
+    "--disable=C0111",
+    "--disable=W0401",
+    "--disable=C0411",
+    "--disable=C0413",
+    "--disable=E0401",
+    "--disable=C0326",
+    "--disable=C0303",
+    "--disable=C0305"
+]
+```
 
 ## Release Notes
 
-### [1.0.5] - 2022-03-08
+## [1.0.6] - 2022-03-16
 
-* Security updates.
-* Added LICENCE file.
+* Minor updates.

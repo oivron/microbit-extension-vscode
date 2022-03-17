@@ -2,7 +2,7 @@
 	"name": "microbit",
 	"displayName": "micro:bit",
 	"description": "Prepares Visual Studio Code for the BBC micro:bit and the 4tronix Bit:bot XL.",
-	"version": "1.0.5",
+	"version": "1.0.6",
 	"publisher": "Statped",
 	"author": {
 		"name": "Øivind Rønning",
