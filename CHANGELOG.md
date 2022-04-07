@@ -59,3 +59,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [1.0.6] - 2022-03-16
 
 * Minor updates.
+
+## [1.0.7] - 2022-04-06
+
+* npm updates.

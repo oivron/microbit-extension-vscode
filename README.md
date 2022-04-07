@@ -80,6 +80,6 @@ This extension modifies workspace settings in the following way:
 
 ## Release Notes
 
-## [1.0.6] - 2022-03-16
+## [1.0.7] - 2022-04-06
 
-* Minor updates.
+* npm updates.
