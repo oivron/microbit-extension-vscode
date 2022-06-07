@@ -7,6 +7,7 @@
 
 ![V1](https://img.shields.io/badge/micro:bit-V1-yellow)
 ![V2](https://img.shields.io/badge/micro:bit-V2-yellow)
+![4tronix Bit:Bot XL](https://img.shields.io/badge/4tronix_Bit:Bot-XL-blue)
 ![V2](https://img.shields.io/badge/Python-3.x-blue)
 
 A Visual Studio Code extension for students who code the BBC micro:bit with [Python](https://www.python.org/). It can be used by anyone who prefer to code the micro:bit with text rather than block. The extension supports micro:bit V1 and V2 and also the [4tronix Bit:Bot XL](https://shop.4tronix.co.uk/collections/bit-bot/products/bitbotxl) robot.
