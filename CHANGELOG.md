@@ -63,3 +63,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [1.0.7] - 2022-04-06
 
 * npm updates.
+
+## [1.0.8] - 2022-06-07
+
+* Updated Readme.
