@@ -1,8 +1,8 @@
 {
 	"name": "microbit",
 	"displayName": "micro:bit",
-	"description": "Prepares Visual Studio Code for the BBC micro:bit and the 4tronix Bit:bot XL.",
-	"version": "1.0.8",
+	"description": "micro:bit with Python. IntelliSense, Linting, Runtime errors. micro:bit V1 and V2. Supports the 4tronix Bit:Bot XL robot.",
+	"version": "1.0.9",
 	"publisher": "Statped",
 	"author": {
 		"name": "Øivind Rønning",

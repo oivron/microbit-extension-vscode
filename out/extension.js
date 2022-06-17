@@ -143,8 +143,9 @@ function activate(context) {
             try {
                 if (fs.existsSync(workspace)) {
                     yield fs.writeFile(workspace + '\\\.env', 'PYTHONPATH=./.microbit-stubs/microbit/lib', function (err) {
-                        if (err)
+                        if (err) {
                             return console.log(err);
+                        }
                         console.log('.env created in ' + workspace);
                     });
                 }
@@ -185,7 +186,7 @@ function activate(context) {
             let fileArgs = { "\.microbit-stubs": true, ".vscode": true, ".env": true };
             vscode.workspace.getConfiguration("files").update("exclude", fileArgs, vscode.ConfigurationTarget.Workspace);
             vscode.workspace.getConfiguration("python").update("envFile", "${workspacefolder}/.env", vscode.ConfigurationTarget.Workspace);
-            let myPylintArgs = ['--disable=W0614', '--disable=C0111', '--disable=W0401', '--disable=C0411', '--disable=C0413', '--disable=E0401', '--disable=C0326', '--disable=C0303', '--disable=C0305'];
+            let myPylintArgs = ['--disable=W0614', '--disable=C0111', '--disable=W0401', '--disable=C0411', '--disable=C0413', '--disable=E0401', '--disable=C0303', '--disable=C0305'];
             vscode.workspace.getConfiguration("python.linting").update("pylintArgs", myPylintArgs, vscode.ConfigurationTarget.Workspace);
             console.log("Added workspace settings");
         }
@@ -272,7 +273,7 @@ function activate(context) {
                         console.error('stderr: ' + chunk);
                         error += chunk;
                         if (chunk.includes("not found")) {
-                            yield showMessageWithButton();
+                            //await showMessageWithButton();
                         }
                     }
                 }
@@ -371,8 +372,9 @@ function activate(context) {
             if (!fs.existsSync(path)) {
                 fs.mkdirSync(path);
                 fs.writeFile(path + '\\pip.ini', '[global]\ntarget=' + homedir + '\\Python\\lib\\site-packages', function (err) {
-                    if (err)
+                    if (err) {
                         return console.log(err);
+                    }
                     console.log('Added pip.ini in ' + homedir);
                 });
             }
@@ -437,8 +439,9 @@ function activate(context) {
             term.sendText("Receive-Job $job");
             console.log("Flashing micro:bit with MicroPython");
             fs.readFile(activeDoc, function (err, data) {
-                if (err)
+                if (err) {
                     throw err;
+                }
                 if (data.includes('bitbot')) {
                     console.log(data);
                     term.sendText("$job = Start-Job { " + ufsCmd + " }");

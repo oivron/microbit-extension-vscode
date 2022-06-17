@@ -7,10 +7,10 @@
 
 ![V1](https://img.shields.io/badge/micro:bit-V1-yellow)
 ![V2](https://img.shields.io/badge/micro:bit-V2-yellow)
-![4tronix Bit:Bot XL](https://img.shields.io/badge/4tronix_Bit:Bot-XL-blue)
+![4tronix Bit:Bot XL](https://img.shields.io/badge/4tronix_Bit:Bot-XL-yellow)
 ![V2](https://img.shields.io/badge/Python-3.x-blue)
 
-A Visual Studio Code extension for students who code the BBC micro:bit with [Python](https://www.python.org/). It can be used by anyone who prefer to code the micro:bit with text rather than block. The extension supports micro:bit V1 and V2 and also the [4tronix Bit:Bot XL](https://shop.4tronix.co.uk/collections/bit-bot/products/bitbotxl) robot.
+A Visual Studio Code extension for students who code the BBC micro:bit with [Python](https://www.python.org/). It supports micro:bit V1 and V2 and also the [4tronix Bit:Bot XL](https://shop.4tronix.co.uk/collections/bit-bot/products/bitbotxl) robot.
 
 The extension makes it easy to flash your micro:bit with your Python script. It provides type hints and easy access to warnings and errors in your script. It also provides access to runtime errors that happen on the micro:bit by accessing the REPL (Read-Evaluate-Print-Loop).
 
@@ -20,6 +20,7 @@ The extension is supported by Visual Studio Code on Windows only.
 - [Features](#features)
 - [How to use](#how-to-use)
 - [Available Commands and keyboard short cuts](#available-commands-and-keyboard-short-cuts)
+- [Installed files](#installed-files)
 - [Workspace settings](#workspace-settings)
 - [Release Notes](#release-notes)
 
@@ -30,24 +31,23 @@ The extension is supported by Visual Studio Code on Windows only.
 
 * Provides type hints.
 * Supports both micro:bit V1 and V2.
-* Adds [Python module for 4tronix Bit:Bot XL](https://pypi.org/project/mbitutils/).
+* Supports the micro:bit accessory [4tronix Bit:Bot XL](https://shop.4tronix.co.uk/collections/bit-bot/products/bitbotxl) robot.
 * Flashes the micro:bit with your script.
 * Reads error messages from the micro:bit (REPL).
-* Modifies workspace settings, [see below](#workspace-settings).
-* Experimental: Some institutions (e.g. schools) do not allow installation of third-party Python modules to their computers. In that case you can choose to install to $env:userprofile instead.
 
 ## How to use
 
 ### Getting started
 
-1. Install [Python](https://www.python.org/) on your system.
+1. Install [Python](https://www.python.org/) on your system. (You will need to Add Python to PATH.)
 2. Create a new folder/workspace in Visual Studio Code.
 3. Open Extensions view (__Ctrl+Shift+X__) and make sure you have the [Python extension from Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-python.python) installed.
-4. From Extensions view (__Ctrl+Shift+X__), search for and install this extension (called '__microbit__' from publisher Statped).
-5. Open Command Palette (__Ctrl+Shift+P__) and select __micro:bit Prepare__. This will install files to your folder/workspace and to your third-party Python modules location.
-6. Restart Visual Studio Code.
-7. Write your Python script for micro:bit or 4tronix Bit:Bot XL.
-8. Flash the micro:bit using __Ctrl+F5__ (or Command Palette __micro:bit Flash__).
+4. From Extensions view, search for and install this extension ('__microbit__' from publisher Statped).
+5. Restart Visual Studio Code.
+6. Open Command Palette (__Ctrl+Shift+P__) and select __micro:bit Prepare__. This will [install files to your system](#installed-files).
+7. Restart Visual Studio Code.
+8. Write your Python script for micro:bit or 4tronix Bit:Bot XL.
+9. Flash your micro:bit using __Ctrl+F5__ (or Command Palette __micro:bit Flash__).
 
 ![Visual Studio Code screen shot after using the Read micro:bit (REPL) command](img/microbit_error.png)
 *Use the Read micro:bit (REPL) command to read errors on the micro:bit unit.*
@@ -73,9 +73,22 @@ The Problems Panel (__Ctrl+Shift+M__) shows warnings and errors that happen duri
 | __micro:bit: Read micro:bit (REPL)__ | __Ctrl+Alt+F5__ | Read error messages from the micro:bit.                    |
 | __Show notifications list__          | __Ctrl+Alt+N__  | Access the Notifications list.                           |
 
+## Installed files
+
+In order to make all the features work as intended, the extension will install files to your system:
+
+### Your workspace
+* .microbit-stubs (stub files for microbit)
+* .env (environment file for Python)
+* .vscode ([settings.json](#workspace-settings))
+
+### Pythons third-party modules location
+* Python module [bitbotxl.py](https://pypi.org/project/bitbotxl/)
+* Other required modules
+
 ## Workspace settings
 
-This extension modifies workspace settings in the following way:
+The following settings are added to the workspace:
 
 ```
 "python.languageServer": "Pylance",
@@ -88,27 +101,33 @@ This extension modifies workspace settings in the following way:
 "python.analysis.extraPaths": [
     ".microbit-stubs/microbit/lib"
 ],
+
 "files.exclude": {
     ".microbit-stubs": true,
     ".vscode": true,
     ".env": true
 },
 "python.envFile": "${workspacefolder}/.env",
+
 "python.linting.pylintArgs": [
-    "--disable=W0614",
-    "--disable=C0111",
-    "--disable=W0401",
-    "--disable=C0411",
-    "--disable=C0413",
-    "--disable=E0401",
-    "--disable=C0326",
-    "--disable=C0303",
-    "--disable=C0305"
+    "--disable=W0614", // unused-wildcard-import
+    "--disable=C0111", // missing-docstring
+    "--disable=W0401", // wildcard-import
+    "--disable=C0411", // wrong-import-order
+    "--disable=C0413", // wrong-import-position
+    "--disable=E0401", // import-error
+    "--disable=C0303", // trailing-whitespace
+    "--disable=C0305"  // trailing-newlines
 ]
 ```
 
 ## Release Notes
 
-## [1.0.8] - 2022-06-07
+## [1.0.9] - 2022-06-16
 
+* Removed experimental feature allowing installation of third-party Python modules to $env:userprofile.
+* Removed deprecated Pylint argument from workspace settings: disable=C0326 (bad-whitespace).
+* Replaced icon.
 * Updated Readme.
+* Bug fixes.
+* npm updates.

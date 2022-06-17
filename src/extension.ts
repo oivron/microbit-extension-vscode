@@ -111,7 +111,9 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			if (fs.existsSync(workspace)) {
 				await fs.writeFile(workspace + '\\\.env', 'PYTHONPATH=./.microbit-stubs/microbit/lib', function (err) {
-					if (err) return console.log(err);
+					if (err) {
+						return console.log(err);
+					}
 					console.log('.env created in ' + workspace);
 				});
 			}
@@ -124,17 +126,17 @@ export function activate(context: vscode.ExtensionContext) {
 	function setEnvVariable() {
 		try {
 			console.log('Creating environment variables');
-			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Pythonpath', 'User')"
+			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Pythonpath', 'User')";
 			term.sendText(cmd);
 
-			var cmd = "$arg = Get-Location | select -ExpandProperty Path"
+			var cmd = "$arg = Get-Location | select -ExpandProperty Path";
 			term.sendText(cmd);
-			var cmd = "$workspaceValue = $arg + '\\\.microbit-stubs\\microbit\\lib'"
+			var cmd = "$workspaceValue = $arg + '\\\.microbit-stubs\\microbit\\lib'";
 			term.sendText(cmd);
 
-			var cmd = "$values = $initilalValues + ';' + $workspaceValue"
+			var cmd = "$values = $initilalValues + ';' + $workspaceValue";
 			term.sendText(cmd);
-			var cmd = "[Environment]::SetEnvironmentVariable('Pythonpath', $values, 'User')"
+			var cmd = "[Environment]::SetEnvironmentVariable('Pythonpath', $values, 'User')";
 			term.sendText(cmd);
 
 			term.sendText("cls");
@@ -160,7 +162,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			vscode.workspace.getConfiguration("python").update("envFile", "${workspacefolder}/.env", vscode.ConfigurationTarget.Workspace);
 
-			let myPylintArgs: string[] = ['--disable=W0614', '--disable=C0111', '--disable=W0401', '--disable=C0411', '--disable=C0413', '--disable=E0401', '--disable=C0326', '--disable=C0303', '--disable=C0305'];
+			let myPylintArgs: string[] = ['--disable=W0614', '--disable=C0111', '--disable=W0401', '--disable=C0411', '--disable=C0413', '--disable=E0401', '--disable=C0303', '--disable=C0305'];
 			vscode.workspace.getConfiguration("python.linting").update("pylintArgs", myPylintArgs, vscode.ConfigurationTarget.Workspace);
 
 			console.log("Added workspace settings");
@@ -215,7 +217,7 @@ export function activate(context: vscode.ExtensionContext) {
 				console.error('stderr: ' + chunk);
 				error += chunk;
 				if (chunk.includes("not found")) {
-					await showMessageWithButton();
+					//await showMessageWithButton();
 				}
 			}
 			const exitCode = await new Promise((resolve, reject) => {
@@ -264,24 +266,24 @@ export function activate(context: vscode.ExtensionContext) {
 
 	async function setEnvVariables() {
 		try {
-			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Path', 'User')"
+			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Path', 'User')";
 			term.sendText(cmd);
-			var cmd = "$userprofileValues = $env:userprofile + '\\Python\\lib\\site-packages' +';' + $env:userprofile + '\\Python\\lib\\site-packages\\bin'"
-			term.sendText(cmd);
-
-			var cmd = "$arg = Get-Location | select -ExpandProperty Path"
-			term.sendText(cmd);
-			var cmd = "$workspaceValue = $arg + '\\\.microbit-stubs\\microbit\\lib'"
+			var cmd = "$userprofileValues = $env:userprofile + '\\Python\\lib\\site-packages' +';' + $env:userprofile + '\\Python\\lib\\site-packages\\bin'";
 			term.sendText(cmd);
 
-			var cmd = "$values = $initilalValues + ';' + $userprofileValues + ';' + $workspaceValue"
+			var cmd = "$arg = Get-Location | select -ExpandProperty Path";
 			term.sendText(cmd);
-			var cmd = "[Environment]::SetEnvironmentVariable('Path', $values, 'User')"
+			var cmd = "$workspaceValue = $arg + '\\\.microbit-stubs\\microbit\\lib'";
 			term.sendText(cmd);
 
-			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Pythonpath', 'User')"
+			var cmd = "$values = $initilalValues + ';' + $userprofileValues + ';' + $workspaceValue";
 			term.sendText(cmd);
-			var cmd = "$userprofileValues = $env:userprofile + '\\Python\\lib\\site-packages' +';' + $env:userprofile + '\\Python\\lib\\site-packages\\bin'"
+			var cmd = "[Environment]::SetEnvironmentVariable('Path', $values, 'User')";
+			term.sendText(cmd);
+
+			var cmd = "$initilalValues = [Environment]::GetEnvironmentVariable('Pythonpath', 'User')";
+			term.sendText(cmd);
+			var cmd = "$userprofileValues = $env:userprofile + '\\Python\\lib\\site-packages' +';' + $env:userprofile + '\\Python\\lib\\site-packages\\bin'";
 			term.sendText(cmd);
 
 			//var cmd = "$arg = Get-Location | select -ExpandProperty Path"
@@ -290,9 +292,9 @@ export function activate(context: vscode.ExtensionContext) {
 			//term.sendText(cmd);
 
 			//var cmd = "$values = $initilalValues + ';' + $userprofileValues + ';' + $workspaceValue"
-			var cmd = "$values = $initilalValues + ';' + $userprofileValues"
+			var cmd = "$values = $initilalValues + ';' + $userprofileValues";
 			term.sendText(cmd);
-			var cmd = "[Environment]::SetEnvironmentVariable('Pythonpath', $values, 'User')"
+			var cmd = "[Environment]::SetEnvironmentVariable('Pythonpath', $values, 'User')";
 			term.sendText(cmd);
 
 			term.sendText("cls");
@@ -312,7 +314,9 @@ export function activate(context: vscode.ExtensionContext) {
 			if (!fs.existsSync(path)) {
 				fs.mkdirSync(path);
 				fs.writeFile(path + '\\pip.ini', '[global]\ntarget=' + homedir + '\\Python\\lib\\site-packages', function (err) {
-					if (err) return console.log(err);
+					if (err) {
+						return console.log(err);
+					}
 					console.log('Added pip.ini in ' + homedir);
 				});
 			}
@@ -377,26 +381,28 @@ export function activate(context: vscode.ExtensionContext) {
 			term.sendText("$job = Start-Job { uflash.exe }");
 			term.sendText("Wait-Job $job | Out-Null");
 			term.sendText("Receive-Job $job");
-			console.log("Flashing micro:bit with MicroPython")
+			console.log("Flashing micro:bit with MicroPython");
 
 			fs.readFile(activeDoc, function (err, data) {
-				if (err) throw err;
+				if (err) {
+					throw err;
+				}
 				if (data.includes('bitbot')) {
 					console.log(data);
 					term.sendText("$job = Start-Job { " + ufsCmd + " }");
 					term.sendText("Wait-Job $job | Out-Null");
 					term.sendText("Receive-Job $job");
-					console.log("Flashing micro:bit with bitbot.py at " + bitbotDir)
+					console.log("Flashing micro:bit with bitbot.py at " + bitbotDir);
 				}
 			});
 		} catch (error) {
-			console.log(error)
+			console.log(error);
 		}
 		finally {
 			term.sendText("$job = Start-Job { ufs put '" + activeDoc + "' main.py }");
 			term.sendText("Wait-Job $job | Out-Null");
 			term.sendText("Receive-Job $job");
-			console.log("Flashing micro:bit with " + activeDoc)
+			console.log("Flashing micro:bit with " + activeDoc);
 		}
 	}
 	let flashMicrobitCommand = vscode.commands.registerCommand('extension.flashMicrobit', function () {
@@ -410,13 +416,13 @@ export function activate(context: vscode.ExtensionContext) {
 		try {
 			let comPort = vscode.workspace.getConfiguration("microbit").get("comPort", vscode.ConfigurationTarget.Workspace);
 
-			var cmd = "$port= new-Object System.IO.Ports.SerialPort COM" + comPort + ",115200,None,8,one"
+			var cmd = "$port= new-Object System.IO.Ports.SerialPort COM" + comPort + ",115200,None,8,one";
 			term.sendText(cmd);
-			var cmd = "$port.open()"
+			var cmd = "$port.open()";
 			term.sendText(cmd);
-			var cmd = "$port.ReadExisting()"
+			var cmd = "$port.ReadExisting()";
 			term.sendText(cmd);
-			var cmd = "$port.Close()"
+			var cmd = "$port.Close()";
 			term.sendText(cmd);
 			return;
 		} catch (error) {

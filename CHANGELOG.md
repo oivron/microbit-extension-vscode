@@ -67,3 +67,12 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ## [1.0.8] - 2022-06-07
 
 * Updated Readme.
+
+## [1.0.9] - 2022-06-16
+
+* Removed experimental feature allowing installation of third-party Python modules to $env:userprofile.
+* Removed deprecated Pylint argument from workspace settings: disable=C0326 (bad-whitespace).
+* Replaced icon.
+* Updated Readme.
+* Bug fixes.
+* npm updates.
