@@ -76,3 +76,13 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 * Updated Readme.
 * Bug fixes.
 * npm updates.
+
+## [1.0.10] - 2023-03-07
+
+* Removed disabling Pylint messages by numerical IDs (e.g. W0614).
+* Added disabling Pylint messages by category (e.g. W).
+* Removed Show notifications list shortcut.
+* Replaced icon.
+* Added category Education.
+* Updated Readme.
+* npm updates.

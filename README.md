@@ -71,7 +71,6 @@ The Problems Panel (__Ctrl+Shift+M__) shows warnings and errors that happen duri
 | __micro:bit: Prepare__               | N/A             | Installs workspace settings and Python modules to your system.                |
 | __micro:bit: Set COM port__          | N/A             | Set the micro:bit COM port.|
 | __micro:bit: Read micro:bit (REPL)__ | __Ctrl+Alt+F5__ | Read error messages from the micro:bit.                    |
-| __Show notifications list__          | __Ctrl+Alt+N__  | Access the Notifications list.                           |
 
 ## Installed files
 
@@ -110,24 +109,18 @@ The following settings are added to the workspace:
 "python.envFile": "${workspacefolder}/.env",
 
 "python.linting.pylintArgs": [
-    "--disable=W0614", // unused-wildcard-import
-    "--disable=C0111", // missing-docstring
-    "--disable=W0401", // wildcard-import
-    "--disable=C0411", // wrong-import-order
-    "--disable=C0413", // wrong-import-position
-    "--disable=E0401", // import-error
-    "--disable=C0303", // trailing-whitespace
-    "--disable=C0305"  // trailing-newlines
+    "--disable:W,C" //disables Pylint messages in the Warning and Convention categories
 ]
 ```
 
 ## Release Notes
 
-## [1.0.9] - 2022-06-16
+## [1.0.10] - 2023-03-07
 
-* Removed experimental feature allowing installation of third-party Python modules to $env:userprofile.
-* Removed deprecated Pylint argument from workspace settings: disable=C0326 (bad-whitespace).
+* Removed disabling Pylint messages by numerical IDs (e.g. W0614).
+* Added disabling Pylint messages by category (e.g. W).
+* Removed Show notifications list shortcut.
 * Replaced icon.
+* Added category Education.
 * Updated Readme.
-* Bug fixes.
 * npm updates.

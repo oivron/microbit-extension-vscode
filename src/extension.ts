@@ -162,7 +162,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 			vscode.workspace.getConfiguration("python").update("envFile", "${workspacefolder}/.env", vscode.ConfigurationTarget.Workspace);
 
-			let myPylintArgs: string[] = ['--disable=W0614', '--disable=C0111', '--disable=W0401', '--disable=C0411', '--disable=C0413', '--disable=E0401', '--disable=C0303', '--disable=C0305'];
+			let myPylintArgs: string[] = ['--disable=W,C'];
 			vscode.workspace.getConfiguration("python.linting").update("pylintArgs", myPylintArgs, vscode.ConfigurationTarget.Workspace);
 
 			console.log("Added workspace settings");

@@ -22,38 +22,52 @@ function activate(context) {
     var termName = "Microbit";
     var term = vscode.window.createTerminal(termName);
     function findPipLocation() {
-        var e_1, _a, e_2, _b;
+        var _a, e_1, _b, _c, _d, e_2, _e, _f;
         return __awaiter(this, void 0, void 0, function* () {
             const { spawn } = require('child_process');
             const child = spawn('pip', ['-V']);
             try {
                 let data = "";
                 try {
-                    for (var _c = __asyncValues(child.stdout), _d; _d = yield _c.next(), !_d.done;) {
-                        const chunk = _d.value;
-                        console.log('stdout: ' + chunk);
-                        data += chunk;
+                    for (var _g = true, _h = __asyncValues(child.stdout), _j; _j = yield _h.next(), _a = _j.done, !_a;) {
+                        _c = _j.value;
+                        _g = false;
+                        try {
+                            const chunk = _c;
+                            console.log('stdout: ' + chunk);
+                            data += chunk;
+                        }
+                        finally {
+                            _g = true;
+                        }
                     }
                 }
                 catch (e_1_1) { e_1 = { error: e_1_1 }; }
                 finally {
                     try {
-                        if (_d && !_d.done && (_a = _c.return)) yield _a.call(_c);
+                        if (!_g && !_a && (_b = _h.return)) yield _b.call(_h);
                     }
                     finally { if (e_1) throw e_1.error; }
                 }
                 let error = "";
                 try {
-                    for (var _e = __asyncValues(child.stderr), _f; _f = yield _e.next(), !_f.done;) {
-                        const chunk = _f.value;
-                        console.error('stderr: ' + chunk);
-                        error += chunk;
+                    for (var _k = true, _l = __asyncValues(child.stderr), _m; _m = yield _l.next(), _d = _m.done, !_d;) {
+                        _f = _m.value;
+                        _k = false;
+                        try {
+                            const chunk = _f;
+                            console.error('stderr: ' + chunk);
+                            error += chunk;
+                        }
+                        finally {
+                            _k = true;
+                        }
                     }
                 }
                 catch (e_2_1) { e_2 = { error: e_2_1 }; }
                 finally {
                     try {
-                        if (_f && !_f.done && (_b = _e.return)) yield _b.call(_e);
+                        if (!_k && !_d && (_e = _l.return)) yield _e.call(_l);
                     }
                     finally { if (e_2) throw e_2.error; }
                 }
@@ -186,7 +200,7 @@ function activate(context) {
             let fileArgs = { "\.microbit-stubs": true, ".vscode": true, ".env": true };
             vscode.workspace.getConfiguration("files").update("exclude", fileArgs, vscode.ConfigurationTarget.Workspace);
             vscode.workspace.getConfiguration("python").update("envFile", "${workspacefolder}/.env", vscode.ConfigurationTarget.Workspace);
-            let myPylintArgs = ['--disable=W0614', '--disable=C0111', '--disable=W0401', '--disable=C0411', '--disable=C0413', '--disable=E0401', '--disable=C0303', '--disable=C0305'];
+            let myPylintArgs = ['--disable=W,C'];
             vscode.workspace.getConfiguration("python.linting").update("pylintArgs", myPylintArgs, vscode.ConfigurationTarget.Workspace);
             console.log("Added workspace settings");
         }
@@ -195,7 +209,7 @@ function activate(context) {
         }
     }
     function installModules(target) {
-        var e_3, _a, e_4, _b;
+        var _a, e_3, _b, _c, _d, e_4, _e, _f;
         return __awaiter(this, void 0, void 0, function* () {
             const { spawn } = require('child_process');
             const args = "pip install " + target + " bitbotxl";
@@ -203,31 +217,45 @@ function activate(context) {
             try {
                 let data = "";
                 try {
-                    for (var _c = __asyncValues(child.stdout), _d; _d = yield _c.next(), !_d.done;) {
-                        const chunk = _d.value;
-                        console.log('stdout: ' + chunk);
-                        data += chunk;
+                    for (var _g = true, _h = __asyncValues(child.stdout), _j; _j = yield _h.next(), _a = _j.done, !_a;) {
+                        _c = _j.value;
+                        _g = false;
+                        try {
+                            const chunk = _c;
+                            console.log('stdout: ' + chunk);
+                            data += chunk;
+                        }
+                        finally {
+                            _g = true;
+                        }
                     }
                 }
                 catch (e_3_1) { e_3 = { error: e_3_1 }; }
                 finally {
                     try {
-                        if (_d && !_d.done && (_a = _c.return)) yield _a.call(_c);
+                        if (!_g && !_a && (_b = _h.return)) yield _b.call(_h);
                     }
                     finally { if (e_3) throw e_3.error; }
                 }
                 let error = "";
                 try {
-                    for (var _e = __asyncValues(child.stderr), _f; _f = yield _e.next(), !_f.done;) {
-                        const chunk = _f.value;
-                        console.error('stderr: ' + chunk);
-                        error += chunk;
+                    for (var _k = true, _l = __asyncValues(child.stderr), _m; _m = yield _l.next(), _d = _m.done, !_d;) {
+                        _f = _m.value;
+                        _k = false;
+                        try {
+                            const chunk = _f;
+                            console.error('stderr: ' + chunk);
+                            error += chunk;
+                        }
+                        finally {
+                            _k = true;
+                        }
                     }
                 }
                 catch (e_4_1) { e_4 = { error: e_4_1 }; }
                 finally {
                     try {
-                        if (_f && !_f.done && (_b = _e.return)) yield _b.call(_e);
+                        if (!_k && !_d && (_e = _l.return)) yield _e.call(_l);
                     }
                     finally { if (e_4) throw e_4.error; }
                 }
@@ -246,41 +274,55 @@ function activate(context) {
         });
     }
     function checkModulesInstalled() {
-        var e_5, _a, e_6, _b;
+        var _a, e_5, _b, _c, _d, e_6, _e, _f;
         return __awaiter(this, void 0, void 0, function* () {
             const { spawn } = require('child_process');
             const child = spawn("powershell.exe", ["pip show bitbotxl"]);
             try {
                 let data = "";
                 try {
-                    for (var _c = __asyncValues(child.stdout), _d; _d = yield _c.next(), !_d.done;) {
-                        const chunk = _d.value;
-                        console.log('stdout: ' + chunk);
-                        data += chunk;
+                    for (var _g = true, _h = __asyncValues(child.stdout), _j; _j = yield _h.next(), _a = _j.done, !_a;) {
+                        _c = _j.value;
+                        _g = false;
+                        try {
+                            const chunk = _c;
+                            console.log('stdout: ' + chunk);
+                            data += chunk;
+                        }
+                        finally {
+                            _g = true;
+                        }
                     }
                 }
                 catch (e_5_1) { e_5 = { error: e_5_1 }; }
                 finally {
                     try {
-                        if (_d && !_d.done && (_a = _c.return)) yield _a.call(_c);
+                        if (!_g && !_a && (_b = _h.return)) yield _b.call(_h);
                     }
                     finally { if (e_5) throw e_5.error; }
                 }
                 let error = "";
                 try {
-                    for (var _e = __asyncValues(child.stderr), _f; _f = yield _e.next(), !_f.done;) {
-                        const chunk = _f.value;
-                        console.error('stderr: ' + chunk);
-                        error += chunk;
-                        if (chunk.includes("not found")) {
-                            //await showMessageWithButton();
+                    for (var _k = true, _l = __asyncValues(child.stderr), _m; _m = yield _l.next(), _d = _m.done, !_d;) {
+                        _f = _m.value;
+                        _k = false;
+                        try {
+                            const chunk = _f;
+                            console.error('stderr: ' + chunk);
+                            error += chunk;
+                            if (chunk.includes("not found")) {
+                                //await showMessageWithButton();
+                            }
+                        }
+                        finally {
+                            _k = true;
                         }
                     }
                 }
                 catch (e_6_1) { e_6 = { error: e_6_1 }; }
                 finally {
                     try {
-                        if (_f && !_f.done && (_b = _e.return)) yield _b.call(_e);
+                        if (!_k && !_d && (_e = _l.return)) yield _e.call(_l);
                     }
                     finally { if (e_6) throw e_6.error; }
                 }
