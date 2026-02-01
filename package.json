@@ -1,0 +1,104 @@
+{
+	"name": "microbit",
+	"displayName": "micro:bit",
+	"description": "micro:bit with Python. IntelliSense, Linting, Runtime errors. micro:bit V1 and V2. Supports the 4tronix Bit:Bot XL robot.",
+	"version": "1.1.8",
+	"publisher": "Statped",
+	"author": {
+		"name": "Øivind Rønning",
+		"email": "oiron@statped.no",
+		"url": "https://www.statped.no/other-languages/"
+	},
+	"repository": {
+		"type": "Git",
+		"url": "https://github.com/oivron/microbit-extension-vscode"
+	},
+	"icon": "icon.png",
+	"engines": {
+		"vscode": "^1.96.0"
+	},
+	"keywords": [
+		"microbit",
+		"micropython",
+		"python"
+	],
+	"categories": [
+		"Programming Languages",
+		"Education"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"configuration": [
+			{
+				"title": "Python",
+				"properties": {
+					"python.thirdPartyModulesDirectory": {
+						"type": "string",
+						"default": null,
+						"description": "Specifies Python's third-party modules directory."
+					}
+				}
+			},
+			{
+				"title": "microbit",
+				"properties": {
+					"microbit.comPort": {
+						"type": "string",
+						"default": null,
+						"description": "Specifies the selected micro:bit COM port."
+					}
+				}
+			}
+		],
+		"commands": [
+			{
+				"command": "extension.flashMicrobit",
+				"title": "micro:bit: Flash"
+			},
+			{
+				"command": "extension.prepareForMicrobit",
+				"title": "micro:bit: Prepare"
+			},
+			{
+				"command": "extension.selectComPort",
+				"title": "micro:bit: Set COM port"
+			},
+			{
+				"command": "extension.readRepl",
+				"title": "micro:bit: Read micro:bit (REPL)"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "extension.flashMicrobit",
+				"key": "ctrl+f5"
+			},
+			{
+				"command": "extension.readRepl",
+				"key": "ctrl+alt+f5"
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"build": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/node": "^25.0.3",
+		"@types/vscode": "1.96.0",
+		"@typescript-eslint/eslint-plugin": "^8.51.0",
+		"@typescript-eslint/parser": "^8.51.0",
+		"@vscode/test-electron": "^2.3.7",
+		"@vscode/vsce": "^2.32.0",
+		"eslint": "^9.39.2",
+		"typescript": "^5.9.3"
+	}
+}

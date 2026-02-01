@@ -1,0 +1,8 @@
+node_modules/
+out/
+!out/extension.js
+src/extension1.0.10.ts.old
+*.vsix
+.vscode/launch.json.orig
+.devcontainer/
+todo/
